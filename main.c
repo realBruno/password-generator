@@ -20,22 +20,25 @@ int main(void)
         printf("Invalid. Try again.\n");
         main();
     }
-
-    for (unsigned long long i = 0; i < size;)
+    else
     {
-        unsigned char pw = rand() % 256;
-        if (33 <= (int) pw && (int) pw <= 126 ||
-            191 <= (int) pw && (int) pw <= 255)
-            {
-                fprintf(output, "%c", pw);
-                i++;
-            }
-        else
-            continue;
+        for (unsigned long long i = 0; i < size;)
+        {
+            unsigned char pw = rand() % 256;
+            if (33 <= (int) pw && (int) pw <= 126 ||
+                191 <= (int) pw && (int) pw <= 255)
+                {
+                    fprintf(output, "%c", pw);
+                    i++;
+                }
+            else
+                continue;
+        }
+
+        printf("Password successfully generated. "
+                "Check \'password.txt\' file.\n");
     }
-
-    printf("Password successfully generated. Check \'password.txt\' file");
-
+    
     fclose(output);
 
     return 0;
