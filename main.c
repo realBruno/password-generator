@@ -3,7 +3,10 @@
 #include <time.h>
 
 int main(void)
-{
+{   
+    clock_t begin, end;
+    double runtime;
+
     srand((unsigned) time(NULL));
     FILE *output = fopen("password.txt", "w");
 
@@ -22,6 +25,7 @@ int main(void)
     }
     else
     {
+        begin = clock();
         for (unsigned long long i = 0; i < size;)
         {
             unsigned char pw = rand() % 256;
@@ -34,9 +38,11 @@ int main(void)
             else
                 continue;
         }
-
+        end = clock();
+        runtime = ((double) (end - begin))/CLOCKS_PER_SEC;
         printf("Password successfully generated. "
                 "Check \'password.txt\' file.\n");
+        printf("Password took %f seconds to be generated.\n", runtime);
     }
     
     fclose(output);
